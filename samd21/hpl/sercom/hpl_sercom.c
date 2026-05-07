@@ -638,10 +638,10 @@ static void _sercom_usart_interrupt_handler(struct _usart_async_device *device)
 	void *hw = device->hw;
 
 	if (hri_sercomusart_get_interrupt_DRE_bit(hw) && hri_sercomusart_get_INTEN_DRE_bit(hw)) {
-		hri_sercomusart_clear_INTEN_DRE_bit(hw);
+		hri_sercomusart_clear_interrupt_DRE_bit(hw);
 		device->usart_cb.tx_byte_sent(device);
 	} else if (hri_sercomusart_get_interrupt_TXC_bit(hw) && hri_sercomusart_get_INTEN_TXC_bit(hw)) {
-		hri_sercomusart_clear_INTEN_TXC_bit(hw);
+		hri_sercomusart_clear_interrupt_TXC_bit(hw);
 		device->usart_cb.tx_done_cb(device);
 	} else if (hri_sercomusart_get_interrupt_RXC_bit(hw)) {
 		if (hri_sercomusart_read_STATUS_reg(hw)
